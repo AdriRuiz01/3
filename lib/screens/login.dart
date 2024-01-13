@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Trying to login ...')),
               );
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductsScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsScreen()));
             }
         }
       ),

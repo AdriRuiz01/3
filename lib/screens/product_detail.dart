@@ -15,7 +15,7 @@ class ProductDetail extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(title: Text('Product detail')),
+      appBar: AppBar(title: const Text('Product detail')),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [Colors.grey.shade100, Colors.green.shade100])),
