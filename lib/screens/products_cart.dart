@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t3_shopping_list/screens/product_detail.dart';
 import '../models/product.dart';
 
 class CartScreen extends StatefulWidget {
@@ -50,6 +51,12 @@ class _CartScreenState extends State<CartScreen> {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: ListTile(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetail(product.id, product.name, product.description),
+          ),
+        ),
         leading: Image.asset(
           product.image,
           width: 100.0,

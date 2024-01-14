@@ -33,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _eMailInput(){
+    String user = 'Adrian@gmail.com';
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
       child: TextFormField(
@@ -45,6 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
         validator: (value){
           if(value == null || value.isEmpty){
             return 'Sorry, user can\'t be empty.';
+          } else if(!value.contains("@")){
+            return 'Please, enter a valid email address';
+          } else if(value != user){
+            return 'User does not exist';
           }
           return null;
         },
@@ -52,7 +57,17 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  bool checkPassword(String cadena) {
+    // Expresión regular para verificar los criterios
+    RegExp regex = RegExp(
+        r'^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^|=&*()_+{}\[\]:;<>,.?~\\-])\S{8,}$');
+
+    // Verificar si la cadena cumple con la expresión regular
+    return regex.hasMatch(cadena);
+  }
+
   Widget _passwordInput(){
+    String password = 'A1_25678';
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
       child: TextFormField(
@@ -67,6 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
         validator: (value){
           if(value == null || value.isEmpty){
             return 'Sorry, password can not be empty';
+          } else if(!checkPassword(value)){
+            return 'Password is not valid';
+          } else if(value != password){
+            return 'Password does not match';
           }
           return null;
         },
@@ -83,7 +102,15 @@ class _LoginScreenState extends State<LoginScreen> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Trying to login ...')),
+                const SnackBar(
+                  content: Center(
+                    child: Text(
+                      'Bienvenido a shopping list!',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  backgroundColor: Colors.indigo,
+                ),
               );
               Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsScreen()));
             }
@@ -91,4 +118,5 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 }

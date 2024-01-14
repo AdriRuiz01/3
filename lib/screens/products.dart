@@ -138,22 +138,34 @@ class _ProductsListViewState extends State<ProductsListView> {
           width: 100.0,
           height: 100.0,
           fit: BoxFit.contain,
-          alignment: Alignment.bottomCenter,
+          alignment: Alignment.centerLeft,
         ),
-        trailing: IconButton(
-          icon: Icon(Icons.shopping_bag, color: isSelected ? Colors.green : null),
-          onPressed: () {
-            setState(() {
-              if (!isSelected) {
-                product.quantity = 1;
-                _selectedProducts.add(product);
-              } else {
-                _selectedProducts.remove(product);
-              }
-            });
-          },
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              getImageCategory(product.category), // Reemplaza con la ruta correcta de tu imagen
+              width: 30.0, // Ajusta según sea necesario
+              height: 30.0, // Ajusta según sea necesario
+              fit: BoxFit.contain,
+            ),
+            SizedBox(width: 30.0), // Espacio entre la imagen y el icono
+            IconButton(
+              icon: Icon(Icons.shopping_bag, color: isSelected ? Colors.green : null),
+              onPressed: () {
+                setState(() {
+                  if (!isSelected) {
+                    product.quantity = 1;
+                    _selectedProducts.add(product);
+                  } else {
+                    _selectedProducts.remove(product);
+                  }
+                });
+              },
+            ),
+          ],
         ),
-        title: Text(product.name),
+        title: Text(product.name, style: TextStyle(fontSize: 13.0)),
         subtitle: Text('${product.price} €/Kg'),
         shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.indigo),
@@ -163,7 +175,33 @@ class _ProductsListViewState extends State<ProductsListView> {
     );
   }
 
+
   List<Product> getSelectedProducts() {
     return _selectedProducts;
   }
+
+  String getImageCategory(String productCategory) {
+
+    switch(productCategory) {
+      case 'fruits':
+        return 'assets/image/frutas.png';
+        break;
+      case 'vegetables':
+        return 'assets/image/brocoli.png';
+        break;
+      case 'fish':
+        return 'assets/image/pescado.png';
+        break;
+      case 'meat':
+        return 'assets/image/filete.png';
+        break;
+      case 'bakery':
+        return 'assets/image/tarta.png';
+        break;
+      default:
+        return "";
+    }
+
+  }
+
 }
