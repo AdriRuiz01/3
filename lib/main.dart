@@ -17,8 +17,25 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: _title,
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title),),
-        body: const LoginScreen(),
+        appBar: AppBar(
+          title: const Text(
+            _title,
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: Colors.teal.shade400,
+        ),
+        body: Stack(
+          children: [
+            // Fondo con la imagen
+            Positioned.fill(
+              child: Image.asset(
+                'assets/image/fondo/fondoApp.jpg',
+                fit: BoxFit.cover,
+              ),
+            ),
+            const LoginScreen(),
+          ],
+        ),
       ),
     );
   }

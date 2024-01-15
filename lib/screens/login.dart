@@ -36,6 +36,12 @@ class _LoginScreenState extends State<LoginScreen> {
     String user = 'Adrian@gmail.com';
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+        border: Border.all(
+          color: Colors.teal.shade300,
+        )
+      ),
       child: TextFormField(
         decoration: InputDecoration(
           labelText: 'User',
@@ -58,11 +64,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   bool checkPassword(String cadena) {
-    // Expresión regular para verificar los criterios
+
     RegExp regex = RegExp(
         r'^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^|=&*()_+{}\[\]:;<>,.?~\\-])\S{8,}$');
 
-    // Verificar si la cadena cumple con la expresión regular
+
     return regex.hasMatch(cadena);
   }
 
@@ -70,6 +76,12 @@ class _LoginScreenState extends State<LoginScreen> {
     String password = 'A1_25678';
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(
+            color: Colors.teal.shade300,
+          )
+      ),
       child: TextFormField(
         obscureText: true,
         obscuringCharacter: '*',
@@ -98,7 +110,12 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: const EdgeInsets.all(8.0),
       alignment: Alignment.centerRight,
       child: ElevatedButton(
-        child: const Text('Login'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.teal.shade400,
+        ),
+        child: const Text('Login', style: TextStyle(
+          color: Colors.white
+        ),),
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -107,9 +124,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       'Bienvenido a shopping list!',
                       textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  backgroundColor: Colors.indigo,
+                  backgroundColor: Colors.teal,
                 ),
               );
               Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsScreen()));
@@ -118,5 +136,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 }

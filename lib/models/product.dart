@@ -29,4 +29,5 @@ class Product{
     map['nutriscore'],
     map['origin']);
 
+
 }

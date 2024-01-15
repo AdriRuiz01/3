@@ -57,6 +57,7 @@ class ProductsScreen extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
+          _buildHeaderItem(context, OrderBy.id, 'Id'),
           _buildHeaderItem(context, OrderBy.name, 'Name'),
           _buildHeaderItem(context, OrderBy.category, 'Category'),
           _buildHeaderItem(context, OrderBy.price, 'Price'),
@@ -78,10 +79,18 @@ class ProductsScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.teal.shade50,
+          border: Border.all(
+            color: Colors.teal.shade300,
+            width: 2.0
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
         child: Text(
           title,
           style: TextStyle(
-            color: Colors.blue,
+            color: Colors.teal,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -111,12 +120,16 @@ class _ProductsListViewState extends State<ProductsListView> {
     });
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: widget._productsData.getSize(),
-        itemBuilder: (context, index) => _listItem(context, widget._productsData.getProduct(index)),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [Colors.teal.shade100, Colors.teal.shade300]),
+        ),
+        child: ListView.builder(
+          itemCount: widget._productsData.getSize(),
+          itemBuilder: (context, index) => _listItem(context, widget._productsData.getProduct(index)),
+        ),
       ),
     );
   }
@@ -126,11 +139,20 @@ class _ProductsListViewState extends State<ProductsListView> {
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
+    child: Container(
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(10.0),
+      border: Border.all(
+        color: Colors.teal.shade50,
+        width: 2.0,
+      ),
+    ),
       child: ListTile(
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetail(product.id, product.name, product.description),
+            builder: (context) => ProductDetail(product),
           ),
         ),
         leading: Image.asset(
@@ -144,14 +166,14 @@ class _ProductsListViewState extends State<ProductsListView> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              getImageCategory(product.category), // Reemplaza con la ruta correcta de tu imagen
-              width: 30.0, // Ajusta según sea necesario
-              height: 30.0, // Ajusta según sea necesario
+              getImageCategory(product.category),
+              width: 30.0,
+              height: 30.0,
               fit: BoxFit.contain,
             ),
-            SizedBox(width: 30.0), // Espacio entre la imagen y el icono
+            SizedBox(width: 30.0),
             IconButton(
-              icon: Icon(Icons.shopping_bag, color: isSelected ? Colors.green : null),
+              icon: Icon(Icons.shopping_bag, color: isSelected ? Colors.teal.shade300 : null),
               onPressed: () {
                 setState(() {
                   if (!isSelected) {
@@ -167,11 +189,8 @@ class _ProductsListViewState extends State<ProductsListView> {
         ),
         title: Text(product.name, style: TextStyle(fontSize: 13.0)),
         subtitle: Text('${product.price} €/Kg'),
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(color: Colors.indigo),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
       ),
+    ),
     );
   }
 

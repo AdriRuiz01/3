@@ -14,17 +14,18 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    // Calculate total sum
+
     double totalSum = 0.0;
     for (Product product in widget.selectedProducts) {
       totalSum += product.price * product.quantity;
     }
+
     return Scaffold(
       appBar: AppBar(
         title: Padding(
-        padding: const EdgeInsets.all(9.0),
-        child: Text('My Shopping cart'),
-      ),
+          padding: const EdgeInsets.all(9.0),
+          child: Text('My Shopping cart'),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(9.0),
@@ -39,10 +40,15 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: widget.selectedProducts.length,
-        itemBuilder: (context, index) =>
-            _cartItem(context, widget.selectedProducts[index]),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [Colors.teal.shade100, Colors.teal.shade300]),
+      ),
+
+        child: ListView.builder(
+          itemCount: widget.selectedProducts.length,
+          itemBuilder: (context, index) => _cartItem(context, widget.selectedProducts[index]),
+        ),
       ),
     );
   }
@@ -50,11 +56,20 @@ class _CartScreenState extends State<CartScreen> {
   Widget _cartItem(BuildContext context, Product product) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: ListTile(
+    child: Container(
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(10.0),
+    border: Border.all(
+    color: Colors.teal.shade50,
+    width: 2.0,
+    ),
+    ),
+    child: ListTile(
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetail(product.id, product.name, product.description),
+            builder: (context) => ProductDetail(product),
           ),
         ),
         leading: Image.asset(
@@ -67,7 +82,7 @@ class _CartScreenState extends State<CartScreen> {
         title: Text(product.name),
         subtitle: Text('${product.price} €/Kg'),
         shape: RoundedRectangleBorder(
-          side: const BorderSide(color: Colors.indigo),
+          side:  BorderSide(color:  Colors.teal.shade50),
           borderRadius: BorderRadius.circular(10.0),
         ),
         trailing: Row(
@@ -87,7 +102,7 @@ class _CartScreenState extends State<CartScreen> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-              ),), // Muestra la cantidad actual
+              ),),
             IconButton(
               icon: const Icon(Icons.add_circle_outline, color: Colors.green,),
               onPressed: () {
@@ -99,6 +114,7 @@ class _CartScreenState extends State<CartScreen> {
           ],
         ),
       ),
+    ),
     );
   }
 }
