@@ -1,16 +1,14 @@
 # t3_shopping_list
 
-A new Flutter project.
+Esta aplicación consiste en la simulación de un carrito de la compra,
+para acceder a ella deberás logearte, tras ello aparecerá un menú
+con diferentes productos, para añadirlos a la cesta deberemos pulsar la bolsa de la compra,
+si la bolsa está en verde significa que ese producto ha sido añadido. 
 
-## Getting Started
+Una vez tengamos todos los productos que necesitemos, pulsaaremos en el carrito de la compra,
+este nos llevará a otro menú donde aparecerán los productos anteriormente seleccionados,
+podremos aumentar o disminuir las unidades que queremos, quedandose mínimo 1 unidad. 
+En la esquina superior derecha aparecerá el precio final.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Si queremos quitar un producto de la lista de la compra simplemente deberemos desmarcar 
+la bolsa de la compra del producto correspondiente.
