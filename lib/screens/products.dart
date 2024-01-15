@@ -17,6 +17,7 @@ class ProductsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('List of Products'),
         actions: [
+          //TODO Activ1: Si pulsamos en el icono de la cesta, nos llevará a la pantalla con los productos seleccionados
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () => Navigator.push(
@@ -30,6 +31,7 @@ class ProductsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          //TODO Activ2: añadimos la cabecera
           _buildHeader(context),
           Expanded(
             child: FutureBuilder(
@@ -51,6 +53,7 @@ class ProductsScreen extends StatelessWidget {
     );
   }
 
+  //TODO Activ2: widget que construye la cabecera
   Widget _buildHeader(BuildContext context) {
     return Container(
       height: 40.0,
@@ -71,6 +74,7 @@ class ProductsScreen extends StatelessWidget {
     );
   }
 
+  //TODO Activ2: widget que construye los items de la cabecera
   Widget _buildHeaderItem(BuildContext context, OrderBy orderBy, String title) {
     return InkWell(
       onTap: () {
@@ -110,9 +114,13 @@ class ProductsListView extends StatefulWidget {
 }
 
 class _ProductsListViewState extends State<ProductsListView> {
+  //TODO Activ1: lista de items seleccionados
   final List<Product> _selectedProducts = [];
+  //TODO Activ1: variable para saber el orden de la lista,
+  // lo inicializo en name para que se ordene de esta forma al iniciar la app
   OrderBy _currentOrderBy = OrderBy.name;
 
+  //TODO Activ2: método que se encarga de ordenar la lista
   void sortList(OrderBy orderBy) {
     setState(() {
       _currentOrderBy = orderBy;
@@ -135,6 +143,7 @@ class _ProductsListViewState extends State<ProductsListView> {
   }
 
   Widget _listItem(BuildContext context, Product product) {
+    //TODO: Activ1: variable para saber si el item esta seleccionado
     final bool isSelected = _selectedProducts.contains(product);
 
     return Padding(
@@ -165,17 +174,21 @@ class _ProductsListViewState extends State<ProductsListView> {
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            //TODO Activ4: añadimos la imagen de la categoria al item
             Image.asset(
-              getImageCategory(product.category),
+              product.getImageCategory(),
               width: 30.0,
               height: 30.0,
               fit: BoxFit.contain,
             ),
             SizedBox(width: 30.0),
             IconButton(
+              //TODO: Activ1: si el item esta seleccionado mostrar el icono como marcado (verde),
+              // de lo contrario mostrar el icono como no marcado (gris)
               icon: Icon(Icons.shopping_bag, color: isSelected ? Colors.teal.shade300 : null),
               onPressed: () {
                 setState(() {
+                  //TODO: Activ1: agregar o quitar el item de la lista de seleccionados
                   if (!isSelected) {
                     product.quantity = 1;
                     _selectedProducts.add(product);
@@ -194,33 +207,10 @@ class _ProductsListViewState extends State<ProductsListView> {
     );
   }
 
-
+  //TODO: Activ1: método para obtener los productos seleccionados
   List<Product> getSelectedProducts() {
     return _selectedProducts;
   }
 
-  String getImageCategory(String productCategory) {
-
-    switch(productCategory) {
-      case 'fruits':
-        return 'assets/image/frutas.png';
-        break;
-      case 'vegetables':
-        return 'assets/image/brocoli.png';
-        break;
-      case 'fish':
-        return 'assets/image/pescado.png';
-        break;
-      case 'meat':
-        return 'assets/image/filete.png';
-        break;
-      case 'bakery':
-        return 'assets/image/tarta.png';
-        break;
-      default:
-        return "";
-    }
-
-  }
 
 }

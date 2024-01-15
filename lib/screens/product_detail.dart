@@ -14,6 +14,7 @@ class ProductDetail extends StatelessWidget {
 
   const ProductDetail(this.product, {Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +39,23 @@ class ProductDetail extends StatelessWidget {
               )
             ),
             const SizedBox(height: 40),
+            //TODO Activ4: todos los datos del producto añadidos
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Text('Id: ', style: _myTextStyle1, textAlign: TextAlign.justify),
                 Text("${product.id}", style: _myTextStyle2, textAlign: TextAlign.justify),
                 Text(' Name: ', style: _myTextStyle1, textAlign: TextAlign.justify),
-                Text(product.name, style: _myTextStyle2, textAlign: TextAlign.justify)
+                Text(product.name, style: _myTextStyle2, textAlign: TextAlign.justify),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text('Category: ', style: _myTextStyle1, textAlign: TextAlign.justify),
+                Text(product.category, style: _myTextStyle2, textAlign: TextAlign.justify),
+                const SizedBox(width: 20),
+                Image.asset(product.getImageCategory())
               ],
             ),
             const Divider(color: Colors.grey, thickness: 1),

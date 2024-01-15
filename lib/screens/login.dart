@@ -33,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _eMailInput(){
+    //TODO Activ3: Variable para el usuario
     String user = 'Adrian@gmail.com';
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
@@ -52,8 +53,10 @@ class _LoginScreenState extends State<LoginScreen> {
         validator: (value){
           if(value == null || value.isEmpty){
             return 'Sorry, user can\'t be empty.';
+            //TOOD Activ3: si el valor no contiene @, la validación fallará
           } else if(!value.contains("@")){
             return 'Please, enter a valid email address';
+            //TODO Activ3: si el valor no es igual al usuario, la validación fallará
           } else if(value != user){
             return 'User does not exist';
           }
@@ -63,16 +66,15 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  //TODO Activ3: Método bool que usa una expresión regular para validar si la contraseña cumple los requisitos
   bool checkPassword(String cadena) {
-
     RegExp regex = RegExp(
         r'^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^|=&*()_+{}\[\]:;<>,.?~\\-])\S{8,}$');
-
-
     return regex.hasMatch(cadena);
   }
 
   Widget _passwordInput(){
+    //TODO Activ3: Variable para la contraseña
     String password = 'A1_25678';
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
@@ -94,8 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
         validator: (value){
           if(value == null || value.isEmpty){
             return 'Sorry, password can not be empty';
+            //TODO Activ3: si el valor no cumple con los requisitos del método checkPassword, la validación fallará
           } else if(!checkPassword(value)){
             return 'Password is not valid';
+            //TODO Activ3: si el valor no es igual a la contraseña creada, la validación fallará
           } else if(value != password){
             return 'Password does not match';
           }

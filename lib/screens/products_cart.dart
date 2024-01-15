@@ -11,6 +11,10 @@ class CartScreen extends StatefulWidget {
   _CartScreenState createState() => _CartScreenState();
 }
 
+
+//TODO Activ1: En esta clase se muestran los productos seleccionados en la cesta,
+// con la opción de aumentar o disminuir la cantidad, también se muestra el total de la compra
+
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
@@ -92,6 +96,7 @@ class _CartScreenState extends State<CartScreen> {
               icon: const Icon(Icons.remove_circle_outline, color: Colors.red,),
               onPressed: () {
                 setState(() {
+                  //TODO Activ1: Disminuir la cantidad, si la cantidad es 1 no se puede disminuir
                   if (product.quantity > 1) {
                     product.quantity--;
                   }
@@ -107,6 +112,7 @@ class _CartScreenState extends State<CartScreen> {
               icon: const Icon(Icons.add_circle_outline, color: Colors.green,),
               onPressed: () {
                 setState(() {
+                  //TODO Activ1: Aumentar la cantidad
                   product.quantity++;
                 });
               },

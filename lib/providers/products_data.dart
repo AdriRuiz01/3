@@ -10,6 +10,8 @@ class ProductsData{
 
   ProductsData._(this._products);
 
+  //TODO Activ1: para completar la actividad quito el orderby por defecto (name)
+  //y que al inicializar se pase por parámetro el OrderBy que queramos
   factory ProductsData.fromJson(String jsonData, OrderBy orderBy){
 
     Map<String, dynamic> mapJson = json.decode(jsonData);
@@ -26,6 +28,7 @@ class ProductsData{
   Product getProduct(int index) => _products[index];
   int getSize() => _products.length;
 
+
   List<Product> getProducts() => _products;
 
   static Future<String> loadJson(BuildContext context, String file) async{
@@ -33,6 +36,7 @@ class ProductsData{
     return await DefaultAssetBundle.of(context).loadString(file);
   }
 
+  //TODO Activ2: para completar la actividad, anadimos los atributos restantes al método
   static sortList(List<Product> list, OrderBy orderBy){
     switch(orderBy){
       case OrderBy.id:

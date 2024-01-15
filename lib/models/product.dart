@@ -29,5 +29,29 @@ class Product{
     map['nutriscore'],
     map['origin']);
 
+  //TODO: Activ4: metodo para obtener la imagen de la categoria de cada item
+  String getImageCategory() {
+
+    switch(category) {
+      case 'fruits':
+        return 'assets/image/frutas.png';
+        break;
+      case 'vegetables':
+        return 'assets/image/brocoli.png';
+        break;
+      case 'fish':
+        return 'assets/image/pescado.png';
+        break;
+      case 'meat':
+        return 'assets/image/filete.png';
+        break;
+      case 'bakery':
+        return 'assets/image/tarta.png';
+        break;
+      default:
+        return "";
+    }
+
+  }
 
 }
